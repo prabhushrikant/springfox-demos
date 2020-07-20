@@ -3,16 +3,27 @@ plugins {
   id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 }
 
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'org.springframework.boot'
+
 group = 'io.springfox.demo'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+
+repositories {
+  mavenCentral()
+  maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
 
 dependencies {
-  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.3.0.RELEASE'
+
+  implementation 'org.springframework.boot:spring-boot-starter-web:2.3.1.RELEASE'
   implementation "io.springfox:springfox-boot-starter:3.0.0-SNAPSHOT"
-  testImplementation('org.springframework.boot:spring-boot-starter-test') {
-    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-  }
+  testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.3.0.RELEASE'
+//  {
+//    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//  }
   testImplementation 'io.projectreactor:reactor-test'
 }
 
